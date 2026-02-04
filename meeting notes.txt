@@ -1,0 +1,48 @@
+- Loop the SKlearn model code for refactoring
+SKLearn =
+
+manhattan: n_clusters=4, linkage=single, silhouette=0.405
+euclidean: n_clusters=4, linkage=single, silhouette=0.373
+
+scipy = 
+euclidean:
+Method: single, n_clusters: 3, Silhouette Score: 0.411
+Method: single, n_clusters: 5, Silhouette Score: 0.367
+
+- adding manhattan distance in the scipy model
+    - copy loops and add 
+
+For all models we need to save the results that model outputs for feature 
+comparison visuals later on
+
+
+Features to analyze:
+
+BALANCE vs PRC_FULL_PAYMENT: cleanly contrasts “revolvers” (carry balance, low full-pay rate) vs “transactors” (pay in full more often). This is usually one of the most actionable splits for marketing/credit strategy
+Strong alternatives (also very interpretable)
+corr: -0.32
+
+CREDIT_LIMIT and PRC_FULL_PAYMENT
+corr: 0.06
+
+CREDIT_LIMIT vs BALANCE: approximates utilization/capacity (high limit + high balance vs low balance, etc.), which often aligns with premium vs basic segment targeting.
+corr: 0.53
+
+Other options depending on results of previous analysis:
+CASH_ADVANCE vs CASH_ADVANCE_FREQUENCY (or CASH_ADVANCE_TRX): highlights customers who rely on cash advances (often higher risk / different product messaging).
+
+ONEOFF_PURCHASES vs INSTALLMENTS_PURCHASES: separates “big-ticket / one-time spenders” from “installment users” (useful for promo/financing offers).
+
+
+PURCHASES_TRX vs ONEOFF_PURCHASES: distinguishes “many small transactions” from “few large purchases”.
+
+
+working steps:
+refactor our code!
+
+plot the model results against the outputted clusters against the features we 
+decide to analyze. 
+
+Add dendrogram for the models we have chosen
+
+violin or boxplot of cluster variance per feature.
